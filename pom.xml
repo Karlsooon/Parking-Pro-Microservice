@@ -10,7 +10,7 @@
 	</parent>
 
 	<groupId>kz.baltabayev</groupId>
-	<artifactId>university-portal</artifactId>
+	<artifactId>parking</artifactId>
 	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 
