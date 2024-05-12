@@ -35,6 +35,7 @@
 		<module>cloud-gateway</module>
 		<module>service-registry</module>
 		<module>PARKING-SERVICE</module>
+		<module>github-config-server</module>
 
 	</modules>
 
