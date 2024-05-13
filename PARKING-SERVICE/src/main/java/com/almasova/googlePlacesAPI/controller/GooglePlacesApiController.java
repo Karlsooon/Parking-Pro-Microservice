@@ -1,6 +1,5 @@
 package com.almasova.googlePlacesAPI.controller;
 
-import com.almasova.googlePlacesAPI.model.entity.Parking;
 import com.almasova.googlePlacesAPI.service.GooglePlacesApiService;
 import com.almasova.googlePlacesAPI.service.impl.GooglePlacesApiServiceImpl;
 import lombok.RequiredArgsConstructor;

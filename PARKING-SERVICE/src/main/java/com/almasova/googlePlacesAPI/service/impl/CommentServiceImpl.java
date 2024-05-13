@@ -2,23 +2,27 @@ package com.almasova.googlePlacesAPI.service.impl;
 
 import com.almasova.googlePlacesAPI.exception.CommentNotFoundException;
 import com.almasova.googlePlacesAPI.exception.ParkingNotFoundException;
-import com.almasova.googlePlacesAPI.mapper.CommentMapper;
-import com.almasova.googlePlacesAPI.mapper.ParkingMapper;
-import com.almasova.googlePlacesAPI.model.dto.CommentRequest;
-import com.almasova.googlePlacesAPI.model.dto.CommentResponse;
-import com.almasova.googlePlacesAPI.model.entity.Comment;
-import com.almasova.googlePlacesAPI.model.entity.Parking;
+
 import com.almasova.googlePlacesAPI.repository.CommentRepository;
 import com.almasova.googlePlacesAPI.repository.ParkingRepository;
 import com.almasova.googlePlacesAPI.service.CommentService;
+
+import com.example.paringproentity.mapper.CommentMapper;
+import com.example.paringproentity.mapper.ParkingMapper;
+import com.example.paringproentity.model.dto.CommentRequest;
+import com.example.paringproentity.model.dto.CommentResponse;
+import com.example.paringproentity.model.entity.Comment;
+import com.example.paringproentity.model.entity.Parking;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
     private final CommentMapper commentMapper;
@@ -27,37 +31,36 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<CommentResponse> findAll() {
-        List<CommentResponse> commentResponses = commentMapper.entitiesToResponses(commentRepository.findAll());
+        List<CommentResponse> commentResponses = commentMapper.toCommentResponseList(commentRepository.findAll());
         return commentResponses;
     }
 
     @Override
     public CommentResponse findById(Long id) {
         Comment comment = get(id);
-        return commentMapper.entityToResponse(comment);
+        return commentMapper.toCommentResponse(comment);
 
     }
 
     @Override
-    public void create(CommentRequest commentRequest, double lat, double lng) {
-        Parking parking = parkingRepository.findByLatitudeAndLongitude(lat, lng);
+    public Comment create(CommentRequest commentRequest) {
+        Parking parking = parkingRepository.findById(commentRequest.getParkingId()).orElseThrow(()->new ParkingNotFoundException(commentRequest.getParkingId()));
         if(parking!=null) {
-            Comment comment = commentMapper.requestToEntity(commentRequest, parkingRepository);
-            comment.setParking(parking);
+            Comment comment = commentMapper.toComment(commentRequest);
             comment.setCreatedAt(LocalDateTime.now());
-            commentRepository.save(comment);
+            return commentRepository.save(comment);
         }
         else{
-            return;
+            return null;
         }
     }
 
     @Override
     public void update(CommentRequest commentRequest, Long id) {
         Comment exictedComment = get(id);
-        Comment updatedComment=commentMapper.requestToUpdate(commentRequest);
+        Comment updatedComment=commentMapper.toComment(commentRequest);
         updatedComment.setId(exictedComment.getId());
-        updatedComment.setParking(exictedComment.getParking());
+        updatedComment.setParkingId(exictedComment.getParkingId());
         updatedComment.setCreatedAt(LocalDateTime.now());
          commentRepository.save(updatedComment);
     }
@@ -71,5 +74,12 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment get(Long id){
         return commentRepository.findById(id).orElseThrow(()->new CommentNotFoundException(id));
+    }
+
+    @Override
+    public List<CommentResponse> getCommentsOfParking(Long id){
+        List<Comment> comments  = commentRepository.findAllByParkingId(id);
+        List<CommentResponse> commentResponses = commentMapper.toCommentResponseList(comments);
+        return commentResponses;
     }
 }

@@ -1,16 +1,16 @@
 package com.almasova.googlePlacesAPI.service.impl;
 
 import com.almasova.googlePlacesAPI.exception.ParkingNotFoundException;
-import com.almasova.googlePlacesAPI.mapper.ParkingMapper;
-import com.almasova.googlePlacesAPI.model.dto.ParkingRequest;
-import com.almasova.googlePlacesAPI.model.dto.ParkingResponse;
-import com.almasova.googlePlacesAPI.model.entity.Parking;
+
 import com.almasova.googlePlacesAPI.repository.ParkingRepository;
 import com.almasova.googlePlacesAPI.service.ParkingService;
+import com.example.paringproentity.mapper.ParkingMapper;
+import com.example.paringproentity.model.dto.CommentResponse;
+import com.example.paringproentity.model.dto.ParkingRequest;
+import com.example.paringproentity.model.dto.ParkingResponse;
+import com.example.paringproentity.model.entity.Parking;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,13 +41,13 @@ public class ParkingServiceImpl implements ParkingService {
         double lng = parkingRequest.getLongitude();
         Parking hasParking = parkingRepository.findByLatitudeAndLongitude(lat, lng);
 
-            if (hasParking != null) {
-                return null; // Parking already exists
-            } else {
-                log.info("Creating new parking");
-                Parking parking = parkingMapper.toParking(parkingRequest);
-                return parkingRepository.save(parking);
-            }
+        if (hasParking != null) {
+            return null; // Parking already exists
+        } else {
+            log.info("Creating new parking");
+            Parking parking = parkingMapper.toParking(parkingRequest);
+            return parkingRepository.save(parking);
+        }
     }
     @Override
     public Parking updateParking(ParkingRequest parkingRequest, Long id){
@@ -65,6 +65,8 @@ public class ParkingServiceImpl implements ParkingService {
     public Parking get(Long id){
         return parkingRepository.findById(id).orElseThrow(()->new ParkingNotFoundException(id));
     }
+
+
 
     //getParking
     //createParking

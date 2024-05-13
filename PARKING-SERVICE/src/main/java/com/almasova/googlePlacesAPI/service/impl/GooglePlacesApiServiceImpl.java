@@ -1,11 +1,12 @@
 package com.almasova.googlePlacesAPI.service.impl;
 
-import com.almasova.googlePlacesAPI.mapper.ParkingMapper;
-import com.almasova.googlePlacesAPI.model.dto.ParkingRequest;
-import com.almasova.googlePlacesAPI.model.entity.Parking;
+
 import com.almasova.googlePlacesAPI.repository.ParkingRepository;
 import com.almasova.googlePlacesAPI.service.GooglePlacesApiService;
 
+import com.example.paringproentity.mapper.ParkingMapper;
+import com.example.paringproentity.model.dto.ParkingRequest;
+import com.example.paringproentity.model.entity.Parking;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;

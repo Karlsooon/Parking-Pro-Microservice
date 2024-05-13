@@ -1,10 +1,11 @@
 package com.almasova.googlePlacesAPI.controller;
 
-import com.almasova.googlePlacesAPI.model.dto.ParkingRequest;
-import com.almasova.googlePlacesAPI.model.dto.ParkingResponse;
-import com.almasova.googlePlacesAPI.model.entity.Parking;
+
 import com.almasova.googlePlacesAPI.repository.ParkingRepository;
 import com.almasova.googlePlacesAPI.service.ParkingService;
+import com.example.paringproentity.model.dto.ParkingRequest;
+import com.example.paringproentity.model.dto.ParkingResponse;
+import com.example.paringproentity.model.entity.Parking;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

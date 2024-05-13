@@ -32,10 +32,11 @@
 	</dependencyManagement>
 
 	<modules>
-		<module>cloud-gateway</module>
-		<module>service-registry</module>
+		<module>parking-pro-gateway</module>
+		<module>parking-pro-server</module>
 		<module>PARKING-SERVICE</module>
-		<module>github-config-server</module>
+		<module>parking-pro-config</module>
+		<module>paring-pro-model</module>
 
 	</modules>
 
