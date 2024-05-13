@@ -8,11 +8,11 @@
 		<version>3.2.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
+	<groupId>com.almasova</groupId>
 	<artifactId>parking-pro-model</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>paring-pro-entity</name>
-	<description>paring-pro-entity</description>
+	<name>parking-pro-model</name>
+	<description>parking-pro-model</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

@@ -8,7 +8,7 @@
 		<version>3.2.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
+	<groupId>com.almasova</groupId>
 	<artifactId>parking-pro-gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demo</name>

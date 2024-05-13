@@ -76,13 +76,13 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.example</groupId>
+			<groupId>com.almasova</groupId>
 			<artifactId>parking-pro-model</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
-			<groupId>com.example</groupId>
+			<groupId>com.almasova</groupId>
 			<artifactId>parking-pro-utils</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
