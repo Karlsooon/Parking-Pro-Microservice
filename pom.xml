@@ -37,6 +37,7 @@
 		<module>PARKING-SERVICE</module>
 		<module>parking-pro-config</module>
 		<module>paring-pro-model</module>
+		<module>parking-pro-utils</module>
 
 	</modules>
 
