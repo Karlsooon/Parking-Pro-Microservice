@@ -34,10 +34,11 @@
 	<modules>
 		<module>parking-pro-gateway</module>
 		<module>parking-pro-server</module>
-		<module>PARKING-SERVICE</module>
+		<module>parking-service</module>
 		<module>parking-pro-config</module>
 		<module>paring-pro-model</module>
 		<module>parking-pro-utils</module>
+		<module>comment-service</module>
 
 	</modules>
 
