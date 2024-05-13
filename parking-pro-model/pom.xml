@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>paring-pro-model</artifactId>
+	<artifactId>parking-pro-model</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>paring-pro-entity</name>
 	<description>paring-pro-entity</description>
