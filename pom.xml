@@ -39,6 +39,12 @@
 		<module>parking-pro-model</module>
 		<module>parking-pro-utils</module>
 		<module>comment-service</module>
+		<module>payment-service</module>
+		<module>owner-service</module>
+		<module>user-service</module>
+		<module>notification-service</module>
+		<module>auth-service</module>
+		<module>image-service</module>
 
 	</modules>
 
