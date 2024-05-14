@@ -5,7 +5,9 @@ import com.example.commentservice.service.CommentService;
 import com.example.paringproentity.model.dto.CommentRequest;
 import com.example.paringproentity.model.dto.CommentResponse;
 import com.example.paringproentity.model.entity.Comment;
+import com.example.parkingproutils.resttemplate.ParkingRestBuilder;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,7 @@ import java.util.List;
 @RequestMapping("/api/v1/comments")
 public class CommentController {
     private final CommentService commentService;
+    private final ParkingRestBuilder parkingRestBuilder;
     @GetMapping
     public ResponseEntity<List<CommentResponse>> getAllComments(){
         return ResponseEntity.ok(commentService.findAll());
@@ -27,8 +30,12 @@ public class CommentController {
     }
     @PostMapping("/create")
     public ResponseEntity<Comment> create(@RequestBody CommentRequest commentRequest){
+        long parkingId = commentRequest.getParkingId();
+        if(parkingRestBuilder.parkingExist(parkingId)){
+            return ResponseEntity.ok(commentService.create(commentRequest));
+        }
+        return new ResponseEntity("parking with id %s not found".formatted(parkingId), HttpStatus.NOT_ACCEPTABLE);
 
-        return ResponseEntity.ok(commentService.create(commentRequest));
     }
     @PatchMapping("/update/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody CommentRequest commentRequest){
