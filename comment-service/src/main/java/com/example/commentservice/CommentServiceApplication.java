@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScan(basePackages = {"com.example", "com.almasova"})
+@ComponentScan(basePackages = {"com.example", "com.example.commentservice"})
 @EnableJpaRepositories(basePackages = {"com.example.commentservice"})
 public class CommentServiceApplication {
 

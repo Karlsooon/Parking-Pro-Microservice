@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -39,10 +40,10 @@ public class ParkingServiceImpl implements ParkingService {
     public Parking createParking(ParkingRequest parkingRequest){
         double lat = parkingRequest.getLatitude();
         double lng = parkingRequest.getLongitude();
-        Parking hasParking = parkingRepository.findByLatitudeAndLongitude(lat, lng);
+        Optional<Parking> hasParking = parkingRepository.findByLatitudeAndLongitude(lat, lng);
 
-        if (hasParking != null) {
-            return null; // Parking already exists
+        if (hasParking.isPresent()) {
+            return null;
         } else {
             log.info("Creating new parking");
             Parking parking = parkingMapper.toParking(parkingRequest);
