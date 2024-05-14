@@ -1,6 +1,7 @@
 package com.example.commentservice.controller;
 
 
+import com.example.commentservice.feign.ParkingFeignClient;
 import com.example.commentservice.service.CommentService;
 import com.example.paringproentity.model.dto.CommentRequest;
 import com.example.paringproentity.model.dto.CommentResponse;
@@ -22,6 +23,7 @@ public class CommentController {
     private final CommentService commentService;
     private final ParkingRestBuilder parkingRestBuilder;
     private final ParkingWebClientBuilder parkingWebClientBuilder;
+    private final ParkingFeignClient parkingFeignClient;
     @GetMapping
     public ResponseEntity<List<CommentResponse>> getAllComments(){
         return ResponseEntity.ok(commentService.findAll());
@@ -33,12 +35,13 @@ public class CommentController {
     @PostMapping("/create")
     public ResponseEntity<Comment> create(@RequestBody CommentRequest commentRequest){
         long parkingId = commentRequest.getParkingId();
-        if(parkingWebClientBuilder.parkingExist(parkingId)){
+//        if(parkingWebClientBuilder.parkingExist(parkingId)){
+//            return ResponseEntity.ok(commentService.create(commentRequest));
+//        }
+        if(parkingFeignClient.getParking(parkingId)!=null){
             return ResponseEntity.ok(commentService.create(commentRequest));
         }
-//        parkingWebClientBuilder.parkingExistAsync(parkingId).subscribe(parking ->{
-//            System.out.println("parking = "+parking);
-//        });
+
         return new ResponseEntity("parking with id %s not found".formatted(parkingId), HttpStatus.NOT_ACCEPTABLE);
 
     }
