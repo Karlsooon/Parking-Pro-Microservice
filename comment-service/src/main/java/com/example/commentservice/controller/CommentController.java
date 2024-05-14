@@ -5,6 +5,7 @@ import com.example.commentservice.feign.ParkingFeignClient;
 import com.example.commentservice.service.CommentService;
 import com.example.paringproentity.model.dto.CommentRequest;
 import com.example.paringproentity.model.dto.CommentResponse;
+import com.example.paringproentity.model.dto.ParkingResponse;
 import com.example.paringproentity.model.entity.Comment;
 import com.example.parkingproutils.resttemplate.ParkingRestBuilder;
 import com.example.parkingproutils.webclient.ParkingWebClientBuilder;
@@ -38,10 +39,14 @@ public class CommentController {
 //        if(parkingWebClientBuilder.parkingExist(parkingId)){
 //            return ResponseEntity.ok(commentService.create(commentRequest));
 //        }
-        if(parkingFeignClient.getParking(parkingId)!=null){
+
+        ResponseEntity<ParkingResponse> parkingResponseResponseEntity = parkingFeignClient.getParking(parkingId);
+        if(parkingResponseResponseEntity.getBody()==null){
+            return new ResponseEntity("Service not available", HttpStatus.NOT_ACCEPTABLE);
+        }
+        if(parkingResponseResponseEntity.getBody()!=null){
             return ResponseEntity.ok(commentService.create(commentRequest));
         }
-
         return new ResponseEntity("parking with id %s not found".formatted(parkingId), HttpStatus.NOT_ACCEPTABLE);
 
     }

@@ -8,9 +8,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+@FeignClient(name = "parking-service", url = "http://localhost:8080/api/v1/parkings", fallback = ParkingFeignClientFallback.class)
 @Component
-@FeignClient(name = "parking-service", url = "http://localhost:8080/api/v1/parkings")
 public interface ParkingFeignClient {
     @GetMapping("/info/{id}")
-    ParkingResponse getParking(@PathVariable Long id);
+    ResponseEntity<ParkingResponse> getParking(@PathVariable Long id);
+}
+@Component
+class ParkingFeignClientFallback implements ParkingFeignClient{
+
+    @Override
+    public ResponseEntity<ParkingResponse> getParking(Long id) {
+        return null;
+    }
 }
