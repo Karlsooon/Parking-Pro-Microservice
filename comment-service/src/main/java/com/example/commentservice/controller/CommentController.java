@@ -6,6 +6,7 @@ import com.example.paringproentity.model.dto.CommentRequest;
 import com.example.paringproentity.model.dto.CommentResponse;
 import com.example.paringproentity.model.entity.Comment;
 import com.example.parkingproutils.resttemplate.ParkingRestBuilder;
+import com.example.parkingproutils.webclient.ParkingWebClientBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import java.util.List;
 public class CommentController {
     private final CommentService commentService;
     private final ParkingRestBuilder parkingRestBuilder;
+    private final ParkingWebClientBuilder parkingWebClientBuilder;
     @GetMapping
     public ResponseEntity<List<CommentResponse>> getAllComments(){
         return ResponseEntity.ok(commentService.findAll());
@@ -31,7 +33,7 @@ public class CommentController {
     @PostMapping("/create")
     public ResponseEntity<Comment> create(@RequestBody CommentRequest commentRequest){
         long parkingId = commentRequest.getParkingId();
-        if(parkingRestBuilder.parkingExist(parkingId)){
+        if(parkingWebClientBuilder.parkingExist(parkingId)){
             return ResponseEntity.ok(commentService.create(commentRequest));
         }
         return new ResponseEntity("parking with id %s not found".formatted(parkingId), HttpStatus.NOT_ACCEPTABLE);
