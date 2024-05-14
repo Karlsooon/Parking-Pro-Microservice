@@ -36,6 +36,9 @@ public class CommentController {
         if(parkingWebClientBuilder.parkingExist(parkingId)){
             return ResponseEntity.ok(commentService.create(commentRequest));
         }
+//        parkingWebClientBuilder.parkingExistAsync(parkingId).subscribe(parking ->{
+//            System.out.println("parking = "+parking);
+//        });
         return new ResponseEntity("parking with id %s not found".formatted(parkingId), HttpStatus.NOT_ACCEPTABLE);
 
     }
