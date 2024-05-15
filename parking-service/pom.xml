@@ -92,6 +92,12 @@
 			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
 			<version>4.1.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-stream-binder-rabbit -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream-binder-rabbit</artifactId>
+			<version>4.1.1</version>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config -->
 <!--		<dependency>-->

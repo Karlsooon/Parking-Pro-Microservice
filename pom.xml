@@ -44,7 +44,8 @@
 		<module>user-service</module>
 		<module>notification-service</module>
 		<module>auth-service</module>
-		<module>image-service</module>
+		<module>storage-service</module>
+		<module>news-service</module>
 
 	</modules>
 
