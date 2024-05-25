@@ -16,8 +16,8 @@ public interface CommentMapper {
 
     CommentRequest toCommentRequest(Comment comment);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "createdAt", ignore = true)
+//    @Mapping(target = "id", ignore = true)
+//    @Mapping(target = "createdAt", ignore = true)
     Comment toComment(CommentRequest commentRequest);
 
     CommentResponse toCommentResponse(Comment comment);

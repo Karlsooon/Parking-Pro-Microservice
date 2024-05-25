@@ -22,7 +22,7 @@ public interface ParkingMapper {
     ParkingMapper INSTANCE = Mappers.getMapper(ParkingMapper.class);
 
 
-    @Mapping(target = "id", ignore = true)
+//    @Mapping(target = "id", ignore = true)
     Parking toParking(ParkingRequest parkingRequest);
 
 
