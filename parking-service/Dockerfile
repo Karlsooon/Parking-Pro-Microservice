@@ -23,7 +23,7 @@ ENTRYPOINT ["zsh"]
 
 
 ##installs to container vim git and curl
-RUN apt-get update && apt-get install vim wget curl git
+#RUN apt-get update && apt-get install vim wget curl git
 #
 ##creats file hello.sh and returns 'Hello from container' and this text puts to hello.sh file
 #RUN touch hello.sh && echo "echo 'Hello from container'">hello.sh
