@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: payment-service
+  profiles:
+    active: micro
+  cloud:
+    config:
+      enabled: false
+      uri: configserver:http://localhost:8888
+server:
+  port: 8087
+paypal:
+  client-id: AfS8sKjoRFhgB6lDygAEB5qDhwz4Qkz9Oy-OSTMyebOym8Gc3HF6YJszGbUa0NNwAIbhfEqeDQpUAG9x
+  client-secret: EIqfyluOqJkKD8_cEf2jGFi5UnBf-MPuus4F2ak6gjVQdIEab5Bw7wD79dyZFQenj-ugQt8s1-jCkvh5
+  mode: sandbox #not production mode of paypal and "live" for production
+
+#spring.application.name=comment-service
+#spring.config.import=configserver:http://localhost:8888
+#spring.application.name=payment-service
+#
+#spring.profiles.active=micro, rabbit
+#spring.cloud.compatibility-verifier.enabled=false
+#server.error.include-message=always
+#server.port=8087

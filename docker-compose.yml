@@ -1,0 +1,30 @@
+version: '3'
+services:
+  postgres-parking:
+    container_name: parking-service-db
+    image: postgres
+    environment:
+      POSTGRES_DB: parking-service
+      POSTGRES_USER: qaraqat
+      POSTGRES_PASSWORD: qaraqat
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./volumes/parking:/data/postgres
+  postgres-comment:
+    container_name: comment-service-db
+    image: postgres
+    environment:
+      POSTGRES_DB: comment-service
+      POSTGRES_USER: qaraqat
+      POSTGRES_PASSWORD: qaraqat
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./volumes/comment:/data/postgres
+
+networks:
+  parking:
+    driver: bridge
+
+
